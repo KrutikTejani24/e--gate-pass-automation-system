@@ -1,0 +1,15 @@
+
+        .sidebar {
+            transition: all 0.3s;
+        }
+        .sidebar-item:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        .active-nav-item {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
