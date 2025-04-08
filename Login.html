@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Gate Pass System | Login/Signup</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab('login')">Login</div>
+        <div class="tab" onclick="switchTab('signup')">Sign Up</div>
+      </div>
+      
+      <div id="login-form" class="form active">
+        <h1>Welcome Back</h1>
+        <p>Sign in to access your E-Gate Pass account</p>
+        
+        <button class="google-button" onclick="googleAuth()">
+          <div class="google-logo">G</div>
+          Sign in with Google
+        </button>
+        
+        <div class="input-group">
+          <label for="login-mobile">Mobile Number</label>
+          <input type="tel" id="login-mobile" placeholder="Enter your mobile number" required>
+          <button class="send-otp-button" onclick="sendOTP('login')">Get OTP</button>
+        </div>
+        
+        <div id="login-verification" class="verification-container" style="display: none;">
+          <label>Enter OTP sent to your mobile</label>
+          <div class="otp-inputs">
+            <input type="text" maxlength="1" class="otp-input" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" class="otp-input" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" class="otp-input" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" class="otp-input" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" class="otp-input" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" class="otp-input" onkeyup="moveToNext(this, event)">
+          </div>
+          
+          <div style="display: flex; align-items: center;">
+            <button class="resend-button" onclick="resendOTP()">Resend OTP</button>
+            <span class="timer" id="login-timer">01:59</span>
+          </div>
+        </div>
+        
+        <button type="submit" onclick="verifyLogin()">Login</button>
+        
+        <div class="form-switch">
+          Don't have an account? <a href="#" onclick="switchTab('signup')">Sign Up</a>
+        </div>
+      </div>
+      
+      <div id="signup-form" class="form">
+        <h1>Create Account</h1>
+        <p>Join our e-gate pass system for secure access</p>
+        
+        <button class="google-button" onclick="googleAuth()">
+          <div class="google-logo">G</div>
+          Sign up with Google
+        </button>
+        
+        <div class="option-group">
+          <div class="option active" onclick="selectUserType('security')">Security</div>
+          <div class="option" onclick="selectUserType('faculty')">Faculty</div>
+          <div class="option" onclick="selectUserType('admin')">Admin</div>
+        </div>
+        
+        <div class="input-group">
+          <label for="signup-mobile">Mobile Number</label>
+          <input type="tel" id="signup-mobile" placeholder="Enter your mobile number" required>
+          <button class="send-otp-button" onclick="sendOTP('signup')">Get OTP</button>
+        </div>
+        
+        <div id="signup-verification" class="verification-container" style="display: none;">
+          <label>Enter OTP sent to your mobile</label>
+          <div class="otp-inputs">
+            <input type="text" maxlength="1" class="otp-input" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" class="otp-input" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" class="otp-input" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" class="otp-input" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" class="otp-input" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" class="otp-input" onkeyup="moveToNext(this, event)">
+          </div>
+          
+          <div style="display: flex; align-items: center;">
+            <button class="resend-button" onclick="resendOTP()">Resend OTP</button>
+            <span class="timer" id="signup-timer">01:59</span>
+          </div>
+        </div>
+
+        
+        <div id="security-fields" class="role-specific-fields active">
+          <div class="input-group">
+            <label for="security-id">Security ID</label>
+            <input type="text" id="security-id" placeholder="Enter your security ID">
+          </div>
+        </div>
+
+        
+        <div id="faculty-fields" class="role-specific-fields">
+          <div class="input-group">
+            <label for="faculty-id">Faculty ID</label>
+            <input type="text" id="faculty-id" placeholder="Enter your faculty ID">
+          </div>
+          <div class="input-group">
+            <label for="faculty-department">Department</label>
+            <input type="text" id="faculty-department" placeholder="Enter your department">
+          </div>
+        </div>
+
+       
+        <div id="admin-fields" class="role-specific-fields">
+          <div class="input-group">
+            <label for="admin-id">Admin ID</label>
+            <input type="text" id="admin-id" placeholder="Enter your admin ID">
+          </div>
+        </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms">
+          <label for="terms">I agree to the <a href="#" style="color: var(--primary-color);">Terms of Service</a> and <a href="#" style="color: var(--primary-color);">Privacy Policy</a></label>
+        </div>
+        
+        <button type="submit" onclick="verifySignup()">Create Account</button>
+        
+        <div class="form-switch">
+          Already have an account? <a href="#" onclick="switchTab('login')">Login</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="info-container">
+      <h1>E-Gate Pass System</h1>
+      <p>Streamline your entry and exit processes with our state-of-the-art electronic gate pass system. Enhanced security, zero paperwork, and real-time tracking.</p>
+      <button class="alt-button">Learn More</button>
+    </div>
+  </div>
+  
+  <script src="login.js"></script>
+</body>
+</html>
